@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const gameStart = () => {
+  btnStart.removeEventListener("click", gameStart); // 移除 start 按鈕的點擊事件
+  btnStart.disabled = true; // 禁用 start 按鈕
+  
+  time = 60; // 初始化時間為 60 秒
+  count = 0; // 初始化分數為 0
+  timeNode.textContent = time; // 顯示初始時間
+  countNode.textContent = count; // 顯示初始分數
+
+  const timer = setInterval(() => {
+    time--; // 每秒減少時間
+    timeNode.textContent = time; // 更新時間顯示
+    if (time === 0) {
+      clearInterval(timer); // 停止計時
+      btnStart.addEventListener("click", gameStart); // 恢復開始遊戲的點擊事件
+      btnStart.disabled = false; // 使 start 按鈕可用
+    }
+  }, 1000); // 每秒執行一次
+
+  // 產生 100 次紅色事件
+  for (let i = 0; i < 100; i++) {
+    const showObj = {
+      space: Math.floor(Math.random() * 9), // 隨機選擇九宮格中的位置 (0-8)
+      show: Math.floor(Math.random() * 3) + 2, // 隨機設定顯示時間 (2 到 4 秒)
+      id: i, // 索引，對應事件
+    };
+
+    // 隨機延遲觸發事件
+    setTimeout(
+        () => {showIt(showObj);}, Math.floor(Math.random() * 56000)
+);
+}
+};
+
+    </script>
+</body>
+</html>
